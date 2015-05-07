@@ -9,7 +9,7 @@
 "   settings.  For every file edited, it searches upward from that file's
 "   directory for a file named '.vimdir' and sources it.
 "
-" Maintainer: Tye Z. < z d r o @ y a h o o . c o m >
+" Original Author: Tye Z. < z d r o @ y a h o o . c o m >
 "
 " 
 
@@ -28,10 +28,14 @@ au dirsettings BufNew,BufNewFile,BufReadPost,VimEnter * call SourceFileUpward('.
 " autocmd line.
 "
 func! SourceFileUpward(fname)
-    let s=FindFileUpward(a:fname)
-    if filereadable(s)
-        exe 'sou ' . s
-    endif
+    try
+      let s=FindFileUpward(a:fname)
+      if filereadable(s)
+          exe 'sou ' . s
+      endif
+    catch
+      "Just fail silently in buffers without a working directory.
+    endtry
 endfunc
 
 "
