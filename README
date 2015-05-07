@@ -1,7 +1,14 @@
-This is a mirror of http://www.vim.org/scripts/script.php?script_id=1860
+Forked from the mirror of the original script at https://github.com/chazy/dirsettings 
 
-Dirsettings allow you to customize the behaviro of VIM in a single subtree
+Dirsettings allow you to customize the behavior of VIM in a single subtree
 by placing a .vimdir file in the root of that directory.
 
 Extremely useful when hacking Android and Linux kernel at the same time
 for example.
+
+This fork contains updates to allow for multiple heirarchical .vimdir
+files. All .vimdir files found upwards in the directory tree are sourced, with
+the nearest being sourced last to overwrite any settings in higher directories.
+
+Also the current working directory is automatically changed to that of the
+nearest .vimdir file.
